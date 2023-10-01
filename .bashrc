@@ -15,6 +15,7 @@ alias pn="pnpm"
 alias p="python"
 alias re="source ~/.bashrc"
 alias gconf="nvim ~/.gitconfig"
+alias e="exit"
 
 # Directories
 alias cc="cd /mnt/c"
