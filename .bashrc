@@ -38,8 +38,8 @@ function ns() {
 }
 
 function vrepos() {
-  cd /mnt/c/repos || return
-  nvim "$1"
+  cd "/mnt/c/repos/$1" || return
+  nvim .
 }
 function vnotes() {
   cd /mnt/c/Users/jorgecelaya/Documents/ || return
