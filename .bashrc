@@ -22,6 +22,7 @@ alias cc="cd /mnt/c"
 alias cwh="cd /mnt/c/Users/jorgecelaya"
 alias cdoc="cd /mnt/c/Users/jorgecelaya/Documents/"
 alias cdocs="cd /mnt/c/Users/jorgecelaya/Documents/"
+alias crepos="cd /mnt/c/repos"
 
 function nt() {
   local num_tabs="${1:-1}"
@@ -36,7 +37,7 @@ function ns() {
   done
 }
 
-function crepos() {
+function vrepos() {
   cd /mnt/c/repos || return
   nvim "$1"
 }
