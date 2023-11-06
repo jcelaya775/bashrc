@@ -2,7 +2,7 @@
 export PATH="$HOME/.local/bin/fd:$PATH"
 
 # oh-my-posh
-eval "$(oh-my-posh init bash --config ~/.poshthemes/amro.omp.json)"
+# eval "$(oh-my-posh init bash --config ~/.poshthemes/amro.omp.json)"
 
 # Alases
 alias c="clear"
