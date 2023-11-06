@@ -28,10 +28,13 @@ alias cdocs="cd /mnt/c/Users/jorgecelaya/Documents/"
 alias crepos="cd /mnt/c/repos"
 
 function nt() {
-  local num_tabs="${1:-1}"
+  num_tabs=$1
+  num_tabs=${num_tabs:-1}
+  local orig_win_idx=$(tmux display-message -p '#I')
   for i in $(seq 1 "$num_tabs"); do
     tmux new-window
   done
+  tmux select-window -t "$orig_win_idx"
 }
 function ns() {
   local num_sessions="${1:-1}"
@@ -44,7 +47,9 @@ function vp() {
   cd "/mnt/c/repos/" || return
   dir="/mnt/c/repos/$(fd --type directory --max-depth 1 | fzf)"
   cd "$dir" || exit
-  nt
+  if [[ "$1" != "" ]]; then
+      nt "$1"
+  fi
   nvim .
 }
 function vrepos() {
@@ -59,7 +64,9 @@ function cproj() {
   cd "/mnt/c/repos/" || return
   dir="/mnt/c/repos/$(fd --type directory --max-depth 1 | fzf)"
   cd "$dir" || exit
-  nt
+  if [[ "$1" != "" ]]; then
+      nt "$1"
+  fi
 }
 
 # Edit config files
