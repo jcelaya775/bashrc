@@ -1,3 +1,6 @@
+# PATH
+export PATH="$HOME/.local/bin/fd:$PATH"
+
 # oh-my-posh
 eval "$(oh-my-posh init bash --config ~/.poshthemes/amro.omp.json)"
 
@@ -37,6 +40,13 @@ function ns() {
   done
 }
 
+function vp() {
+  cd "/mnt/c/repos/" || return
+  dir="/mnt/c/repos/$(fd --type directory --max-depth 1 | fzf)"
+  cd "$dir" || exit
+  nt
+  nvim .
+}
 function vrepos() {
   cd "/mnt/c/repos/$1" || return
   nvim .
@@ -44,6 +54,12 @@ function vrepos() {
 function vnotes() {
   cd /mnt/c/Users/jorgecelaya/Documents/ || return
   nvim notes.md
+}
+function cproj() {
+  cd "/mnt/c/repos/" || return
+  dir="/mnt/c/repos/$(fd --type directory --max-depth 1 | fzf)"
+  cd "$dir" || exit
+  nt
 }
 
 # Edit config files
@@ -54,4 +70,10 @@ function vconf() {
 function nconf() {
   cd ~/.config/nvim || return
   nvim "$1"
+}
+function gconf() {
+  nvim ~/.gitconfig
+}
+function bconf() {
+  nvim ~/.bashrc
 }
