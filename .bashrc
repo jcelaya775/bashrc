@@ -29,7 +29,7 @@ alias crepos="cd /mnt/c/repos"
 
 function nt() {
   num_tabs=$1
-  num_tabs=${num_tabs:-1}
+  num_tabs=$((num_tabs - 1))
   local orig_win_idx=$(tmux display-message -p '#I')
   for i in $(seq 1 "$num_tabs"); do
     tmux new-window
