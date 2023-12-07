@@ -28,15 +28,21 @@ alias cdocs="cd /mnt/c/Users/jorgecelaya/Documents/"
 alias crepos="cd /mnt/c/repos"
 
 function nt() {
-  num_tabs=$1
+  if [ -z "$1" ]; then
+    echo "parameter was not passed"
+    num_tabs=1
+  else
+    num_tabs=$1
+  fi
+
   local orig_win_idx
   orig_win_idx=$(tmux display-message -p '#I')
+
   for i in $(seq 1 "$num_tabs"); do
     tmux new-window
   done
   tmux select-window -t "$orig_win_idx"
 }
-
 function ns() {
   local num_sessions="${1:-1}"
   for i in $(seq 1 "$num_sessions"); do
