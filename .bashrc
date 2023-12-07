@@ -29,7 +29,6 @@ alias crepos="cd /mnt/c/repos"
 
 function nt() {
   if [ -z "$1" ]; then
-    echo "parameter was not passed"
     num_tabs=1
   else
     num_tabs=$1
