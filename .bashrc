@@ -29,13 +29,14 @@ alias crepos="cd /mnt/c/repos"
 
 function nt() {
   num_tabs=$1
-  num_tabs=$((num_tabs - 1))
-  local orig_win_idx=$(tmux display-message -p '#I')
+  local orig_win_idx
+  orig_win_idx=$(tmux display-message -p '#I')
   for i in $(seq 1 "$num_tabs"); do
     tmux new-window
   done
   tmux select-window -t "$orig_win_idx"
 }
+
 function ns() {
   local num_sessions="${1:-1}"
   for i in $(seq 1 "$num_sessions"); do
@@ -48,24 +49,27 @@ function vp() {
   dir="/mnt/c/repos/$(fd --type directory --max-depth 1 | fzf)"
   cd "$dir" || exit
   if [[ "$1" != "" ]]; then
-      nt "$1"
+      nt "$(($1 - 1))"
   fi
   nvim .
 }
+
 function vrepos() {
   cd "/mnt/c/repos/$1" || return
   nvim .
 }
+
 function vnotes() {
   cd /mnt/c/Users/jorgecelaya/Documents/ || return
   nvim notes.md
 }
+
 function cproj() {
   cd "/mnt/c/repos/" || return
   dir="/mnt/c/repos/$(fd --type directory --max-depth 1 | fzf)"
   cd "$dir" || exit
   if [[ "$1" != "" ]]; then
-      nt "$1"
+      nt "$(($1 - 1))"
   fi
 }
 
@@ -74,13 +78,16 @@ function vconf() {
   cd ~/.config/nvim || return
   nvim "$1"
 }
+
 function nconf() {
   cd ~/.config/nvim || return
   nvim "$1"
 }
+
 function gconf() {
   nvim ~/.gitconfig
 }
+
 function bconf() {
   nvim ~/.bashrc
 }
